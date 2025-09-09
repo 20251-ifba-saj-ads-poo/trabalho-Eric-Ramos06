@@ -7,7 +7,7 @@ package br.edu.ifba.saj.fwads.controller;
 import br.edu.ifba.saj.fwads.App;
 import br.edu.ifba.saj.fwads.exception.LoginInvalidoException;
 import br.edu.ifba.saj.fwads.model.Usuario;
-import br.edu.ifba.saj.fwads.service.UsuarioService;
+import br.edu.ifba.saj.fwads.service.MotoristaService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -23,22 +23,46 @@ public class LoginController {
     @FXML // fx:id="txUsuario"
     private TextField txUsuario; // Value injected by FXMLLoader
 
-    private UsuarioService usuarioService = new UsuarioService();
+    private MotoristaService usuarioService = new MotoristaService();
+
 
     @FXML
-    void entrar(ActionEvent event) {
-        
+    void entrarVisitante(ActionEvent event) {
         try {
-            Usuario usuario = usuarioService.validaLogin(txUsuario.getText(), txSenha.getText());
             App.setRoot("controller/Master.fxml");
             MasterController controller = (MasterController) App.getController();
-            controller.setUsuarioLogado(usuario);
-        } catch (LoginInvalidoException e) {
-            new Alert(AlertType.ERROR, e.getMessage()).showAndWait();
-        } catch (Exception e){
+            controller.setUsuarioLogado(null);
+
+        } catch (Exception e) {
             e.printStackTrace();
-            new Alert(AlertType.ERROR, "Erro inesperado, favor entra em contato com a equipe de desenvolvimento").showAndWait();
+            new Alert(AlertType.ERROR, "Erro inesperado, favor entrar em contato com a equipe de desenvolvimento").showAndWait();
         }
+    }
+@FXML
+    void entrar(ActionEvent event) {
+
+        if (txUsuario.getText().equals("") && txSenha.getText().equals("")) {
+    new Alert(AlertType.INFORMATION, "Entrando como visitante").showAndWait();
+    App.setRoot("controller/Master.fxml");
+
+    MasterController controller = (MasterController) App.getController();
+    controller.setUsuarioLogado(null);
+
+} else {
+    try {
+        Usuario usuario = usuarioService.validaLogin(txUsuario.getText(), txSenha.getText());
+        App.setRoot("controller/Master.fxml");
+
+        MasterController controller = (MasterController) App.getController();
+        controller.setUsuarioLogado(usuario);
+
+    } catch (LoginInvalidoException e) {
+        new Alert(AlertType.ERROR, e.getMessage()).showAndWait();
+    } catch (Exception e) {
+        e.printStackTrace();
+        new Alert(AlertType.ERROR, "Erro inesperado, favor entrar em contato com a equipe de desenvolvimento").showAndWait();
+    }
+}
     }
 
     @FXML

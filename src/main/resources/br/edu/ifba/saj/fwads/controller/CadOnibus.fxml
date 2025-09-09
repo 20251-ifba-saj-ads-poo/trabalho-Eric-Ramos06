@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="263.0" prefWidth="219.0" xmlns="http://javafx.com/javafx/24" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ifba.saj.fwads.controller.CadOnibusController">
+   <children>
+      <Label fx:id="lbPlaca" layoutX="16.0" layoutY="14.0" prefHeight="18.0" prefWidth="31.0" text="Placa" textAlignment="CENTER" AnchorPane.leftAnchor="16.0" AnchorPane.rightAnchor="173.0" />
+      <TextField fx:id="txPlaca" layoutX="15.0" layoutY="32.0" />
+      <Button fx:id="btnSalvar" defaultButton="true" layoutX="159.0" layoutY="223.0" mnemonicParsing="false" onAction="#salvarOnibus" text="Salvar" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="83.0" />
+      <Button cancelButton="true" layoutX="224.0" layoutY="220.0" mnemonicParsing="false" onAction="#limparTela" text="Cancelar" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0" />
+   </children>
+</AnchorPane>
