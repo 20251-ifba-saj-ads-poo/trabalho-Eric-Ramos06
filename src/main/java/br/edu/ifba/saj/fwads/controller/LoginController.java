@@ -7,7 +7,7 @@ package br.edu.ifba.saj.fwads.controller;
 import br.edu.ifba.saj.fwads.App;
 import br.edu.ifba.saj.fwads.exception.LoginInvalidoException;
 import br.edu.ifba.saj.fwads.model.Usuario;
-import br.edu.ifba.saj.fwads.service.MotoristaService;
+import br.edu.ifba.saj.fwads.service.UsuarioService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -23,7 +23,7 @@ public class LoginController {
     @FXML // fx:id="txUsuario"
     private TextField txUsuario; // Value injected by FXMLLoader
 
-    private MotoristaService usuarioService = new MotoristaService();
+    private UsuarioService usuarioService = new UsuarioService();
 
 
     @FXML

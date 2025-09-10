@@ -3,7 +3,7 @@ package br.edu.ifba.saj.fwads.model;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-public class Motorista  extends AbstractModel<UUID>{
+public class Motorista  extends AbstractEntity{
     private String nome;
     private String cpf;
     

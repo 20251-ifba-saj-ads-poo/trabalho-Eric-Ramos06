@@ -1,4 +1,5 @@
-package br.edu.ifba.saj.fwads.service;
+/**
+ * package br.edu.ifba.saj.fwads.service;
 
 import java.util.Map;
 import java.util.NoSuchElementException;
@@ -21,3 +22,4 @@ public class MotoristaService extends Service<Motorista> {
         }
     }
 }
+**/
