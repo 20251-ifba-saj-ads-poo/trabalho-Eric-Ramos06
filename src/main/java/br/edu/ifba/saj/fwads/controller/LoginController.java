@@ -25,7 +25,6 @@ public class LoginController {
 
     private UsuarioService usuarioService = new UsuarioService();
 
-
     @FXML
     void entrarVisitante(ActionEvent event) {
         try {
@@ -35,41 +34,34 @@ public class LoginController {
 
         } catch (Exception e) {
             e.printStackTrace();
-            new Alert(AlertType.ERROR, "Erro inesperado, favor entrar em contato com a equipe de desenvolvimento").showAndWait();
+            new Alert(AlertType.ERROR, "Erro inesperado, favor entrar em contato com a equipe de desenvolvimento")
+                    .showAndWait();
         }
     }
-@FXML
+
+    @FXML
     void entrar(ActionEvent event) {
+        try {
+            Usuario usuario = usuarioService.validaLogin(txUsuario.getText(), txSenha.getText());            
+            App.setRoot("controller/Master.fxml");
+            MasterController controller = (MasterController) App.getController();
+            controller.setUsuarioLogado(usuario);
 
-        if (txUsuario.getText().equals("") && txSenha.getText().equals("")) {
-    new Alert(AlertType.INFORMATION, "Entrando como visitante").showAndWait();
-    App.setRoot("controller/Master.fxml");
-
-    MasterController controller = (MasterController) App.getController();
-    controller.setUsuarioLogado(null);
-
-} else {
-    try {
-        Usuario usuario = usuarioService.validaLogin(txUsuario.getText(), txSenha.getText());
-        App.setRoot("controller/Master.fxml");
-
-        MasterController controller = (MasterController) App.getController();
-        controller.setUsuarioLogado(usuario);
-
-    } catch (LoginInvalidoException e) {
-        new Alert(AlertType.ERROR, e.getMessage()).showAndWait();
-    } catch (Exception e) {
-        e.printStackTrace();
-        new Alert(AlertType.ERROR, "Erro inesperado, favor entrar em contato com a equipe de desenvolvimento").showAndWait();
-    }
-}
+        } catch (LoginInvalidoException e) {
+            new Alert(AlertType.ERROR, e.getMessage()).showAndWait();
+        } catch (Exception e) {
+            e.printStackTrace();
+            new Alert(AlertType.ERROR, "Erro inesperado, favor entrar em contato com a equipe de desenvolvimento")
+                    .showAndWait();
+        }
     }
 
     @FXML
     void limparCampos(ActionEvent event) {
         txUsuario.setText("");
         txSenha.setText("");
-        //new Alert(AlertType.INFORMATION, usuarioService.findAll().toString()).showAndWait();
+        // new Alert(AlertType.INFORMATION,
+        // usuarioService.findAll().toString()).showAndWait();
 
     }
 
