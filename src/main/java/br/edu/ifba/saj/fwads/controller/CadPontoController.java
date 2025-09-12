@@ -1,7 +1,8 @@
 package br.edu.ifba.saj.fwads.controller;
 
-import br.edu.ifba.saj.fwads.Dados;
+import br.edu.ifba.saj.fwads.exception.EvitarDuplicidadeException;
 import br.edu.ifba.saj.fwads.model.Ponto;
+import br.edu.ifba.saj.fwads.service.PontoService;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.BooleanBinding;
 import javafx.event.ActionEvent;
@@ -19,7 +20,31 @@ public class CadPontoController {
     @FXML
     private Button btnSalvar;
 
+private PontoService servicePonto = new PontoService();
+
     @FXML
+    void salvarPonto(ActionEvent event) {
+
+        try {
+            servicePonto.validarDuplicidade(txEndereco.getText());
+
+            Ponto novoPonto = new Ponto(txEndereco.getText());
+            servicePonto.create(novoPonto);
+            new Alert(AlertType.INFORMATION,
+                    "Ponto cadastrado com sucesso: " + novoPonto.getEndereco()).showAndWait();
+            limparTela();
+            // if (listMotoristaController != null) {
+            // listMotoristaController.loadMotoristaList();
+            // }
+        } catch (EvitarDuplicidadeException e) {
+            new Alert(AlertType.ERROR, e.getMessage()).showAndWait();
+        } catch (Exception e) {
+            e.printStackTrace();
+            new Alert(AlertType.ERROR, "Erro inesperado, favor entrar em contato com a equipe de desenvolvimento")
+                    .showAndWait();
+        }
+    }
+@FXML
     private void initialize() {
         BooleanBinding enderecoInvalido = Bindings.createBooleanBinding(
             () -> {
@@ -30,21 +55,6 @@ public class CadPontoController {
         );
         btnSalvar.disableProperty().bind(enderecoInvalido);
     }
-
-    @FXML
-    private void salvarPonto(ActionEvent event) {
-        String endereco = txEndereco.getText().trim();
-        Ponto novoPonto = new Ponto(endereco);
-
-        new Alert(
-            AlertType.INFORMATION,
-            "Cadastrando Ponto: " + novoPonto.getEndereco()
-        ).showAndWait();
-
-        Dados.listaPonto.add(novoPonto);
-        limparTela();
-    }
-
     @FXML
     private void limparTela() {
         txEndereco.clear();

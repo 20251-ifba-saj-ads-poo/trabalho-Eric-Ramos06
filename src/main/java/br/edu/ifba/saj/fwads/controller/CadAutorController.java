@@ -46,8 +46,8 @@ public class CadAutorController {
         txNome.setText("");
         txEmail.setText("");
         txCPF.setText("");
-        //masterController.showFXMLFile("ListAutor.fxml");
-        //new Alert(AlertType.INFORMATION, serviceAutor.findAll().toString()).showAndWait();
+        masterController.showFXMLFile("ListAutor.fxml");
+        new Alert(AlertType.INFORMATION, serviceAutor.findAll().toString()).showAndWait();
     }
 
 }

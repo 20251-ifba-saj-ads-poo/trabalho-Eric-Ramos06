@@ -76,7 +76,7 @@ public class CadLivroController {
         txSubTitulo.setText("");
         txISBN.setText("");
         slAutor.setValue(null);
-        //new Alert(AlertType.INFORMATION, serviceLivro.findAll().toString()).showAndWait();
+        new Alert(AlertType.INFORMATION, serviceLivro.findAll().toString()).showAndWait();
     }
 
     private void carregarListaAutores() {

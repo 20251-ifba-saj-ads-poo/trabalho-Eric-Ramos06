@@ -1,6 +1,5 @@
 package br.edu.ifba.saj.fwads.model;
 
-import java.util.UUID;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

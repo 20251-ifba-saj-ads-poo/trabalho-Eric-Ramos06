@@ -148,6 +148,12 @@ public class MasterController {
         limparBotoes(event.getSource());
         showFXMLFile("CadLinha.fxml");
     }
+    
+    @FXML
+    void showLinhasVisu(ActionEvent event) {
+        limparBotoes(event.getSource());
+        showFXMLFile("ShowLinhasVisu.fxml");
+    }
 
     public Object showFXMLFile(String resourceName) {
         try {

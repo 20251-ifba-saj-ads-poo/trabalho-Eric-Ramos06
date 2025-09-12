@@ -1,39 +1,62 @@
 package br.edu.ifba.saj.fwads.model;
 
-import java.time.LocalDateTime;
-import java.util.UUID;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
-public class Itinerario  extends AbstractModel<UUID>{
-    private String Nome;
-    private String horaPartida;
+@Entity
+public class Itinerario extends AbstractEntity {
+    @Column
+    @NotBlank
+    @Size(min = 5)
+    private String nome;
+    @Column
+    @NotBlank
+    @Size(min = 5)
+    private String HoraPartida;
+
+    @Column
+    @NotBlank
+    @Size(min = 5)
     private Rota rota;
 
-
-    public Itinerario(String nome, String horaPartida, Rota rota) {
-        this.Nome = nome;
-        this.horaPartida = horaPartida;
+    public Itinerario(@NotBlank @Size(min = 5) String nome, @NotBlank @Size(min = 5) String HoraPartida, Rota rota) {
+        this.nome = nome;
+        this.HoraPartida = HoraPartida;
         this.rota = rota;
     }
 
+    public Itinerario() {
+    }
+
     public String getNome() {
-        return Nome;
+        return nome;
     }
 
     public void setNome(String nome) {
-        Nome = nome;
-    }
-    public String getHoraPartida() {
-        return horaPartida;
-    }    
-    public void setHoraPartida(String horaPartida) {
-        this.horaPartida = horaPartida;
+        this.nome = nome;
     }
 
     public Rota getRota() {
         return rota;
     }
+
     public void setRota(Rota rota) {
         this.rota = rota;
+    }
+
+    public void setHoraPartida(String HoraPartida) {
+        this.HoraPartida = HoraPartida;
+    }
+
+    public String getHoraPartida() {
+        return HoraPartida;
+    }
+
+    @Override
+    public String toString() {
+        return "Itinerario [nome=" + nome + ", HoraPartida=" + HoraPartida + ", rota=" + rota + "]";
     }
 
 }

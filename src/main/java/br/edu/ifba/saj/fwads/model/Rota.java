@@ -1,22 +1,51 @@
 package br.edu.ifba.saj.fwads.model;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
-public class Rota extends AbstractModel<UUID> {
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
+@Entity
+public class Rota extends AbstractEntity {
+    @Column
+    @NotBlank
+    @Size(min = 5)
     private String nome;
-    private Ponto pontoInitial;
-    private Ponto pontoFinal;
-    private List<Ponto> paradas;
 
-    public Rota(String nome, Ponto pontoInitial, Ponto pontoFinal, List<Ponto> paradas) {
+    @Column
+    @NotBlank
+    @Size(min = 5)
+    private Ponto pontoInicial;
+
+    @Column
+    @NotBlank
+    @Size(min = 5)
+    private Ponto pontoFinal;
+
+    @Column
+    @NotBlank
+    @Size(min = 5)
+    private List<Ponto> pontos;
+
+    public Rota(@NotBlank @Size(min = 5) String nome, @NotBlank @Size(min = 5) Ponto pontoInicial,
+            @NotBlank @Size(min = 5) Ponto pontoFinal, List<Ponto> pontos) {
         this.nome = nome;
-        this.pontoInitial = pontoInitial;
+        this.pontoInicial = pontoInicial;
         this.pontoFinal = pontoFinal;
-        this.paradas = new ArrayList<>(paradas);
+        this.pontos = pontos;
+    }
+
+    public Rota() {
+    }
+
+    public List<Ponto> getPontos() {
+        return pontos;
+    }
+
+    public void setPontos(List<Ponto> pontos) {
+        this.pontos = pontos;
     }
 
     public String getNome() {
@@ -27,23 +56,26 @@ public class Rota extends AbstractModel<UUID> {
         this.nome = nome;
     }
 
-    public Ponto getPontoInitial() {
-        return pontoInitial;
+    public @NotBlank @Size(min = 5) Ponto getPontoInicial() {
+        return pontoInicial;
     }
-    public void setPontoInitial(Ponto pontoInitial) {
-        this.pontoInitial = pontoInitial;
+
+    public void setPontoInicial(@NotBlank @Size(min = 5) Ponto pontoInicial) {
+        this.pontoInicial = pontoInicial;
     }
-    public Ponto getPontoFinal() {
+
+    public @NotBlank @Size(min = 5) Ponto getPontoFinal() {
         return pontoFinal;
     }
-    public void setPontoFinal(Ponto pontoFinal) {
+
+    public void setPontoFinal(@NotBlank @Size(min = 5) Ponto pontoFinal) {
         this.pontoFinal = pontoFinal;
     }
-    public ArrayList<Ponto> getParadas() {
-        return (ArrayList<Ponto>) paradas;
+
+    @Override
+    public String toString() {
+        return "Rota [nome=" + nome + ", pontoInicial=" + pontoInicial + ", pontoFinal=" + pontoFinal + ", pontos="
+                + pontos + "]";
     }
-    public void setParadas(ArrayList<Ponto> paradas) {
-        this.paradas = paradas;
-    }
-    
+
 }

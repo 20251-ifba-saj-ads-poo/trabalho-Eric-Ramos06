@@ -1,0 +1,361 @@
+/**
+ * 
+ Save Ponto
+
+
+
+
+
+
+
+
+package br.edu.ifba.saj.fwads.model;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+
+@Entity
+public class Ponto  extends AbstractEntity{
+    @Column
+    @NotBlank
+    @Size(min = 5)
+    private String endereco;
+
+    public Ponto(@NotBlank @Size(min = 5) String endereco) {
+        this.endereco = endereco;
+    }
+
+    public Ponto() {
+    }
+
+    public String getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
+    }
+
+    @Override
+    public String toString() {
+        return "Ponto [endereco=" + endereco + "]";
+    }
+
+}
+
+package br.edu.ifba.saj.fwads.model;
+
+import java.util.List;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+
+@Entity
+public class Rota extends AbstractEntity {
+    @Column
+    @NotBlank
+    @Size(min = 5)
+    private String nome;
+
+    @Column
+    @NotBlank
+    @Size(min = 5)
+    private Ponto pontoInicial;
+
+    @Column
+    @NotBlank
+    @Size(min = 5)
+    private Ponto pontoFinal;
+
+    @Column
+    @NotBlank
+    @Size(min = 5)
+    private List<Ponto> pontos;
+
+    public Rota(@NotBlank @Size(min = 5) String nome, @NotBlank @Size(min = 5) Ponto pontoInicial,
+            @NotBlank @Size(min = 5) Ponto pontoFinal, List<Ponto> pontos) {
+        this.nome = nome;
+        this.pontoInicial = pontoInicial;
+        this.pontoFinal = pontoFinal;
+        this.pontos = pontos;
+    }
+
+    public Rota() {
+    }
+
+    public List<Ponto> getPontos() {
+        return pontos;
+    }
+
+    public void setPontos(List<Ponto> pontos) {
+        this.pontos = pontos;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public @NotBlank @Size(min = 5) Ponto getPontoInicial() {
+        return pontoInicial;
+    }
+
+    public void setPontoInicial(@NotBlank @Size(min = 5) Ponto pontoInicial) {
+        this.pontoInicial = pontoInicial;
+    }
+
+    public @NotBlank @Size(min = 5) Ponto getPontoFinal() {
+        return pontoFinal;
+    }
+
+    public void setPontoFinal(@NotBlank @Size(min = 5) Ponto pontoFinal) {
+        this.pontoFinal = pontoFinal;
+    }
+
+    @Override
+    public String toString() {
+        return "Rota [nome=" + nome + ", pontoInicial=" + pontoInicial + ", pontoFinal=" + pontoFinal + ", pontos="
+                + pontos + "]";
+    }
+
+}
+
+package br.edu.ifba.saj.fwads.model;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+
+@Entity
+public class Itinerario extends AbstractEntity {
+    @Column
+    @NotBlank
+    @Size(min = 5)
+    private String nome;
+    @Column
+    @NotBlank
+    @Size(min = 5)
+    private String HoraPartida;
+
+    @Column
+    @NotBlank
+    @Size(min = 5)
+    private Rota rota;
+
+    public Itinerario(@NotBlank @Size(min = 5) String nome, @NotBlank @Size(min = 5) String HoraPartida, Rota rota) {
+        this.nome = nome;
+        this.HoraPartida = HoraPartida;
+        this.rota = rota;
+    }
+
+    public Itinerario() {
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public Rota getRota() {
+        return rota;
+    }
+
+    public void setRota(Rota rota) {
+        this.rota = rota;
+    }
+
+    public void setHoraPartida(String HoraPartida) {
+        this.HoraPartida = HoraPartida;
+    }
+
+    public String getHoraPartida() {
+        return HoraPartida;
+    }
+
+    @Override
+    public String toString() {
+        return "Itinerario [nome=" + nome + ", HoraPartida=" + HoraPartida + ", rota=" + rota + "]";
+    }
+
+}
+
+Save Linha
+
+package br.edu.ifba.saj.fwads.model;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+
+@Entity
+public class Linha extends AbstractEntity {
+    @Column
+    @NotBlank
+    @Size(min = 5)
+    private String nome;
+    @Column
+    @NotBlank
+    @Size(min = 5)
+    private Onibus onibus;
+    @Column
+    @NotBlank
+    @Size(min = 5)
+    private Motorista motorista;
+    @Column
+    @NotBlank
+    @Size(min = 5)
+    private Itinerario itinerario;
+
+    public Linha(@NotBlank @Size(min = 5) String nome, @NotBlank @Size(min = 5) Onibus onibus,
+            @NotBlank @Size(min = 5) Motorista motorista, @NotBlank @Size(min = 5) Itinerario itinerario) {
+        this.nome = nome;
+        this.onibus = onibus;
+        this.motorista = motorista;
+        this.itinerario = itinerario;
+    }
+
+    public Linha() {
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public Onibus getOnibus() {
+        return onibus;
+    }
+
+    public void setOnibus(Onibus onibus) {
+        this.onibus = onibus;
+    }
+
+    public Motorista getMotorista() {
+        return motorista;
+    }
+
+    public void setMotorista(Motorista motorista) {
+        this.motorista = motorista;
+    }
+
+    public Itinerario getItinerario() {
+        return itinerario;
+    }
+
+    public void setItinerario(Itinerario itinerario) {
+        this.itinerario = itinerario;
+    }
+
+    @Override
+    public String toString() {
+        return "Linha [nome=" + nome + ", onibus=" + onibus + ", motorista=" + motorista + ", itinerario=" + itinerario
+                + "]";
+    }
+
+}
+
+SAve Onibus
+
+package br.edu.ifba.saj.fwads.model;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+
+@Entity
+public class Onibus  extends AbstractEntity{
+    @Column
+    @NotBlank
+    @Size(min = 5)
+    private String placa;
+
+    public Onibus(@NotBlank @Size(min = 5) String placa) {
+        this.placa = placa;
+    }
+
+    public Onibus() {
+    }
+
+    public String getPlaca() {
+        return placa;
+    }
+
+    public void setPlaca(String placa) {
+        this.placa = placa;
+    }
+
+    @Override
+    public String toString() {
+        return "Onibus [placa=" + placa + "]";
+    }
+
+}
+
+Save Motorista
+
+package br.edu.ifba.saj.fwads.model;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+
+@Entity
+public class Motorista extends AbstractEntity {
+    @Column
+    @NotBlank
+    @Size(min = 5)
+    private String nome;
+    @Column
+    @NotBlank
+    @Size(min = 5)
+    private String cpf;
+
+    public Motorista(@NotBlank @Size(min = 5) String nome, @NotBlank @Size(min = 5) String cpf) {
+        this.nome = nome;
+        this.cpf = cpf;
+    }
+
+    public Motorista() {
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    @Override
+    public String toString() {
+        return "Motorista [nome=" + nome + ", cpf=" + cpf + "]";
+    }
+
+}
+
+**/

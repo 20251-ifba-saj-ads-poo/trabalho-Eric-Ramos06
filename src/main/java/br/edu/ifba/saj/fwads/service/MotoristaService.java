@@ -1,10 +1,8 @@
-/**
- * package br.edu.ifba.saj.fwads.service;
+package br.edu.ifba.saj.fwads.service;
 
 import java.util.Map;
-import java.util.NoSuchElementException;
 
-import br.edu.ifba.saj.fwads.exception.LoginInvalidoException;
+import br.edu.ifba.saj.fwads.exception.EvitarDuplicidadeException;
 import br.edu.ifba.saj.fwads.model.Motorista;
 
 public class MotoristaService extends Service<Motorista> {
@@ -13,13 +11,10 @@ public class MotoristaService extends Service<Motorista> {
         super(Motorista.class);
     }
 
-    public Motorista validaCPF(String login, String senha) throws LoginInvalidoException {
-        try {
-            return findByMap(Map.of("login", login, "senha", senha)).getFirst();
-        } catch (NoSuchElementException e) {
-            throw new LoginInvalidoException(
-                "Não foi possível localizar o usuário " + login + ", ou a senha esta errada");
+    public Motorista validarDuplicidade(String cpf) throws EvitarDuplicidadeException {
+       if(!findByMap(Map.of("cpf", cpf)).isEmpty()){
+            throw new EvitarDuplicidadeException("Já existe uma conta vinculada à este CPF.");
         }
+        return null;
     }
 }
-**/
