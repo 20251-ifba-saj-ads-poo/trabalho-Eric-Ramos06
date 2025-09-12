@@ -62,7 +62,7 @@
                         <Font size="16.0" />
                      </font>
                   </Button>
-                  <Button defaultButton="true" layoutX="102.0" layoutY="286.0" mnemonicParsing="false" onAction="#entrarVisitante" prefHeight="35.0" prefWidth="120.0" styleClass="btn-login" stylesheets="@assets/style.css" text="Entrar como Visitante" textFill="WHITE">
+                  <Button layoutX="102.0" layoutY="286.0" mnemonicParsing="false" onAction="#entrarVisitante" prefHeight="35.0" prefWidth="120.0" styleClass="btn-login" stylesheets="@assets/style.css" text="Entrar como Visitante" textFill="WHITE">
                      <font>
                         <Font size="11.0" />
                      </font>
