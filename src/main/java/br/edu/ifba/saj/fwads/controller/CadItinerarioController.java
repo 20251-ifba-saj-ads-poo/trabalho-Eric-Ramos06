@@ -2,10 +2,15 @@ package br.edu.ifba.saj.fwads.controller;
 
 
 import br.edu.ifba.saj.fwads.Dados;
+import br.edu.ifba.saj.fwads.exception.EvitarDuplicidadeException;
 import br.edu.ifba.saj.fwads.model.Itinerario;
+import br.edu.ifba.saj.fwads.model.Onibus;
 import br.edu.ifba.saj.fwads.model.Rota;
+import br.edu.ifba.saj.fwads.service.ItinerarioService;
+import br.edu.ifba.saj.fwads.service.OnibusService;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.BooleanBinding;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -28,17 +33,29 @@ public class CadItinerarioController {
     @FXML
     private Button btnSalvar;
 
-    @FXML
-    private void salvarItinerario() {
-        String nome = txNome.getText();
-        String horaPartida = txHoraPartida.getText();
-        Rota rota = slRota.getValue();
-        Itinerario novaItinerario = new Itinerario(nome, horaPartida, rota);
-        new Alert(AlertType.INFORMATION,
-                "Cadastrando Itinerário:" + novaItinerario.getNome() + " - " + novaItinerario.getHoraPartida() + " - " + novaItinerario.getRota().getNome()).showAndWait();
-        Dados.listaItinerario.add(novaItinerario);
-        limparTela();
+    private ItinerarioService serviceItinerario = new ItinerarioService();
 
+    @FXML
+    void salvarItinerario(ActionEvent event) {
+
+        try {
+            serviceItinerario.validarDuplicidade(txNome.getText());
+
+            Itinerario novoItinerario = new Itinerario(txNome.getText(), txHoraPartida.getText(), slRota.getValue());
+            serviceItinerario.create(novoItinerario);
+            new Alert(AlertType.INFORMATION,
+                    "Itinerário cadastrado com sucesso: " + novoItinerario.getNome()).showAndWait();
+            limparTela();
+            // if (listMotoristaController != null) {
+            // listMotoristaController.loadMotoristaList();
+            // }
+        } catch (EvitarDuplicidadeException e) {
+            new Alert(AlertType.ERROR, e.getMessage()).showAndWait();
+        } catch (Exception e) {
+            e.printStackTrace();
+            new Alert(AlertType.ERROR, "Erro inesperado, favor entrar em contato com a equipe de desenvolvimento")
+                    .showAndWait();
+        }
     }
     @FXML 
     private void initialize() {

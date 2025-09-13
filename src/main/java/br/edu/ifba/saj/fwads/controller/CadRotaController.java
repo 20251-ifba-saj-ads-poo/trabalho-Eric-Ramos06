@@ -1,10 +1,13 @@
 package br.edu.ifba.saj.fwads.controller;
 
-import br.edu.ifba.saj.fwads.Dados;
+import br.edu.ifba.saj.fwads.exception.EvitarDuplicidadeException;
 import br.edu.ifba.saj.fwads.model.Rota;
+import br.edu.ifba.saj.fwads.service.PontoService;
+import br.edu.ifba.saj.fwads.service.RotaService;
 import br.edu.ifba.saj.fwads.model.Ponto;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
@@ -29,14 +32,40 @@ public class CadRotaController {
     @FXML
     private Button btnSalvar;
 
-    private final StringConverter<Ponto> pontoConverter = new StringConverter<>() {
+    private RotaService serviceRota = new RotaService();
+
+    @FXML
+    void salvarRota(ActionEvent event) {
+
+        try {
+            serviceRota.validarDuplicidade(txNome.getText());
+
+            Rota novaRota = new Rota(txNome.getText(), slPontoInitial.getValue(), slPontoFinal.getValue(), lvParadas.getSelectionModel().getSelectedItems());
+            serviceRota.create(novaRota);
+            new Alert(AlertType.INFORMATION,
+                    "Rota cadastrada com sucesso: " + novaRota.getNome()).showAndWait();
+            limparTela();
+            // if (listMotoristaController != null) {
+            // listMotoristaController.loadMotoristaList();
+            // }
+        } catch (EvitarDuplicidadeException e) {
+            new Alert(AlertType.ERROR, e.getMessage()).showAndWait();
+        } catch (Exception e) {
+            e.printStackTrace();
+            new Alert(AlertType.ERROR, "Erro inesperado, favor entrar em contato com a equipe de desenvolvimento")
+                    .showAndWait();
+        }
+    }   
+        
+        private final StringConverter<Ponto> pontoConverter = new StringConverter<>() {
         @Override
         public String toString(Ponto p) {
             return p != null ? p.getEndereco() : "";
         }
         @Override
         public Ponto fromString(String text) {
-            return Dados.listaPonto.stream()
+            PontoService pontoService = new PontoService();
+            return pontoService.bucasTodos().stream()
                 .filter(pt -> pt.getEndereco().equals(text))
                 .findFirst()
                 .orElse(null);
@@ -45,9 +74,11 @@ public class CadRotaController {
 
     @FXML
 public void initialize() {
+    PontoService pontoService = new PontoService();
 
     ObservableList<Ponto> obsPontos = 
-        FXCollections.observableArrayList(Dados.listaPonto);
+        pontoService.bucasTodos().stream()
+            .collect(Collectors.toCollection(FXCollections::observableArrayList));
     slPontoInitial.setItems(obsPontos);
     slPontoFinal.setItems(obsPontos);
     slPontoInitial.setConverter(pontoConverter);
@@ -73,29 +104,7 @@ public void initialize() {
                      .lessThan(1))
     );
 }
-    @FXML
-private void salvarRota() {
-    String nome           = txNome.getText().trim();
-    Ponto inicial         = slPontoInitial.getValue();
-    Ponto fim             = slPontoFinal.getValue();
-    ObservableList<Ponto> paradasSelecionadas = 
-        lvParadas.getSelectionModel().getSelectedItems();
-    Rota novaRota = new Rota(nome, inicial, fim, paradasSelecionadas);
 
-    new Alert(AlertType.INFORMATION,
-        String.format("Cadastrando Rota: %s – %s a %s, paradas em %s",
-            nome,
-            inicial.getEndereco(),
-            fim.getEndereco(),
-            paradasSelecionadas.stream()
-                .map(Ponto::getEndereco)
-                .collect(Collectors.joining(", "))
-        )
-    ).showAndWait();
-
-    Dados.listaRota.add(novaRota);
-    limparTela();
-}
 
     @FXML
     private void limparTela() {

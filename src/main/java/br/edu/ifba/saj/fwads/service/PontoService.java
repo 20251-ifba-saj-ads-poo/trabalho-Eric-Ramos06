@@ -1,5 +1,7 @@
 package br.edu.ifba.saj.fwads.service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import br.edu.ifba.saj.fwads.exception.EvitarDuplicidadeException;
@@ -17,4 +19,8 @@ public class PontoService extends Service<Ponto> {
         }
         return null;
     }
+
+    public List<Ponto> bucasTodos() {
+    return new ArrayList<>(super.findAll());
+}
 }
