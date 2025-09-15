@@ -2,12 +2,15 @@ package br.edu.ifba.saj.fwads.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.ManyToMany;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 import java.util.ArrayList;
 import java.util.List;
+
 
 @Entity
 public class Rota extends AbstractEntity{
@@ -17,12 +20,12 @@ public class Rota extends AbstractEntity{
     @Size(min = 5)
     private String nome;
 
-    @Column
-    @NotBlank
+    @NotNull
+    @ManyToOne
     private Ponto pontoInicial; 
 
-    @Column
-    @NotBlank
+    @NotNull
+    @ManyToOne
     private Ponto pontoFinal;
 
     @ManyToMany
@@ -30,7 +33,7 @@ public class Rota extends AbstractEntity{
 
 
 
-    public Rota(@NotBlank @Size String nome, @NotBlank Ponto pontoInicial, @NotBlank Ponto pontoFinal){
+    public Rota(@NotBlank @Size String nome, @NotNull Ponto pontoInicial, @NotNull Ponto pontoFinal){
 
         this.nome = nome;
         this.pontoInicial = pontoInicial;
