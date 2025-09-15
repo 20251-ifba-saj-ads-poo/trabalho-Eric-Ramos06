@@ -1,61 +1,57 @@
 package br.edu.ifba.saj.fwads.controller;
 
+import br.edu.ifba.saj.fwads.exception.CampoObrigatorioException;
+import br.edu.ifba.saj.fwads.exception.FormatoInvalidoException;
 import br.edu.ifba.saj.fwads.exception.EvitarDuplicidadeException;
 import br.edu.ifba.saj.fwads.model.Onibus;
 import br.edu.ifba.saj.fwads.service.OnibusService;
-import javafx.beans.binding.Bindings;
-import javafx.beans.binding.BooleanBinding;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 
 public class CadOnibusController {
 
     @FXML
     private TextField txPlaca;
 
-    @FXML
-    private Button btnSalvar;
+    private MasterController masterController;
+    private ListOnibusController listOnibusController;
+    private OnibusService serviceOnibus;
 
-    private OnibusService serviceOnibus = new OnibusService();
+    public void setMasterController(MasterController masterController) {
+        this.masterController = masterController;
+    }
+
+    public void setListOnibusController(ListOnibusController listOnibusController) {
+        this.listOnibusController = listOnibusController;
+    }
+
+    public void setServiceOnibus(OnibusService serviceOnibus) {
+        this.serviceOnibus = serviceOnibus;
+    }
 
     @FXML
-    void salvarOnibus(ActionEvent event) {
+    private void salvarOnibus() {
+        String placa = txPlaca.getText().trim();
+        Onibus novoOnibus = new Onibus(placa);
 
         try {
-            serviceOnibus.validarDuplicidade(txPlaca.getText());
-
-            Onibus novoOnibus = new Onibus(txPlaca.getText());
-            serviceOnibus.create(novoOnibus);
+            serviceOnibus.salvarComValidacao(novoOnibus);
             new Alert(AlertType.INFORMATION,
-                    "Ônibus cadastrado com sucesso: " + novoOnibus.getPlaca()).showAndWait();
+                "Ônibus: " + novoOnibus.getPlaca() + " cadastrado com sucesso").showAndWait();
             limparTela();
-        } catch (EvitarDuplicidadeException e) {
+            if (listOnibusController != null) {
+                listOnibusController.loadOnibusList();
+            }
+        } catch (CampoObrigatorioException | FormatoInvalidoException | EvitarDuplicidadeException e) {
             new Alert(AlertType.ERROR, e.getMessage()).showAndWait();
-        } catch (Exception e) {
-            e.printStackTrace();
-            new Alert(AlertType.ERROR, "Erro inesperado, favor entrar em contato com a equipe de desenvolvimento")
-                    .showAndWait();
         }
     }
 
     @FXML
-    private void initialize() {
-        BooleanBinding placaInvalida = Bindings.createBooleanBinding(
-                () -> {
-                    String text = txPlaca.getText();
-                    return text == null || text.trim().isEmpty();
-                },
-                txPlaca.textProperty());
-
-        btnSalvar.disableProperty().bind(placaInvalida);
-    }
-
-    @FXML
     private void limparTela() {
-        txPlaca.clear();
+        txPlaca.setText("");
+        masterController.showFXMLFile("ListOnibus.fxml");
     }
 }

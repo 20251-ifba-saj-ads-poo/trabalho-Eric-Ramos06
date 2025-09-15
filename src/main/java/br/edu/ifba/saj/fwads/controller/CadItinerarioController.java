@@ -1,16 +1,17 @@
 package br.edu.ifba.saj.fwads.controller;
 
-import br.edu.ifba.saj.fwads.App;
+import br.edu.ifba.saj.fwads.exception.CampoObrigatorioException;
+import br.edu.ifba.saj.fwads.exception.FormatoInvalidoException;
 import br.edu.ifba.saj.fwads.exception.EvitarDuplicidadeException;
 import br.edu.ifba.saj.fwads.model.Itinerario;
 import br.edu.ifba.saj.fwads.model.Rota;
 import br.edu.ifba.saj.fwads.service.ItinerarioService;
 import br.edu.ifba.saj.fwads.service.RotaService;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.util.StringConverter;
 
@@ -25,80 +26,60 @@ public class CadItinerarioController {
     @FXML
     private ChoiceBox<Rota> slRota;
 
-    @FXML
-    private Button btnSalvar;
+    private ListItinerarioController listItinerarioController;
+    private ItinerarioService serviceItinerario;
+    private RotaService serviceRota = new RotaService();
 
-    private final ItinerarioService serviceItinerario = new ItinerarioService();
+    public void setListItinerarioController(ListItinerarioController listItinerarioController) {
+        this.listItinerarioController = listItinerarioController;
+    }
 
-    private final RotaService serviceRota = new RotaService();
-
-    private final StringConverter<Rota> rotaConverter = new StringConverter<>() {
-        @Override
-        public String toString(Rota r) {
-            if (r != null) {
-                String origem = r.getPontoInicial() != null ? r.getPontoInicial().getEndereco() : "N/D";
-                String destino = r.getPontoFinal() != null ? r.getPontoFinal().getEndereco() : "N/D";
-                return String.format("%s | Origem: %s | Destino: %s", r.getNome(), origem, destino);
-            }
-            return "";
-        }
-
-        @Override
-        public Rota fromString(String text) {
-            return serviceRota.buscarTodosRotas().stream()
-                    .filter(rt -> text.contains(rt.getNome()))
-                    .findFirst()
-                    .orElse(null);
-        }
-    };
+    public void setServiceItinerario(ItinerarioService serviceItinerario) {
+        this.serviceItinerario = serviceItinerario;
+    }
 
     @FXML
     private void initialize() {
-        ObservableList<Rota> obsRotas = FXCollections.observableArrayList(serviceRota.buscarTodosRotas());
-        slRota.setItems(obsRotas);
-        slRota.setConverter(rotaConverter);
+        slRota.setConverter(new StringConverter<>() {
+            @Override
+            public String toString(Rota rota) {
+                return rota != null ? rota.getNome() : "";
+            }
 
-        btnSalvar.disableProperty().bind(
-                txNome.textProperty().isEmpty()
-                        .or(txHoraPartida.textProperty().isEmpty())
-                        .or(slRota.valueProperty().isNull()));
+            @Override
+            public Rota fromString(String string) {
+                return null;
+            }
+        });
+
+        slRota.setItems(FXCollections.observableList(serviceRota.findAll()));
     }
 
     @FXML
-    void salvarItinerario(ActionEvent event) {
+    private void salvarItinerario() {
+        String nome = txNome.getText().trim();
+        String hora = txHoraPartida.getText().trim();
+        Rota rotaSelecionada = slRota.getSelectionModel().getSelectedItem();
+
+        Itinerario novoItinerario = new Itinerario(nome, hora, rotaSelecionada);
+
         try {
-            serviceItinerario.validarDuplicidade(txNome.getText());
-
-            Itinerario novoItinerario = new Itinerario();
-            novoItinerario.setNome(txNome.getText());
-            novoItinerario.setHoraPartida(txHoraPartida.getText());
-            novoItinerario.setRota(slRota.getValue());
-
-            serviceItinerario.create(novoItinerario);
-
+            serviceItinerario.salvarComValidacao(novoItinerario);
             new Alert(AlertType.INFORMATION,
-                    "Itinerário cadastrado com sucesso: " + novoItinerario.getNome()).showAndWait();
-
+                "Itinerário: " + novoItinerario.getNome() + " cadastrado com sucesso!").showAndWait();
             limparTela();
-
-        } catch (EvitarDuplicidadeException e) {
+            if (listItinerarioController != null) {
+                listItinerarioController.loadItinerarioList();
+            }
+        } catch (CampoObrigatorioException | FormatoInvalidoException | EvitarDuplicidadeException e) {
             new Alert(AlertType.ERROR, e.getMessage()).showAndWait();
-        } catch (Exception e) {
-            e.printStackTrace();
-            new Alert(AlertType.ERROR,
-                    "Erro inesperado, favor entrar em contato com a equipe de desenvolvimento").showAndWait();
         }
-    }
-
-    @FXML
-    void cancel(ActionEvent event) {
-        App.setRoot("controller/Menu.fxml");
     }
 
     @FXML
     private void limparTela() {
-        txNome.clear();
-        txHoraPartida.clear();
-        slRota.setValue(null);
+        txNome.setText("");
+        txHoraPartida.setText("");
+        slRota.getSelectionModel().clearSelection();
     }
 }

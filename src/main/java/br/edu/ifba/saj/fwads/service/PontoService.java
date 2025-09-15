@@ -1,27 +1,39 @@
 package br.edu.ifba.saj.fwads.service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
+import br.edu.ifba.saj.fwads.exception.CampoObrigatorioException;
 import br.edu.ifba.saj.fwads.exception.EvitarDuplicidadeException;
 import br.edu.ifba.saj.fwads.model.Ponto;
 
-public class PontoService extends Service<Ponto> {
+import java.util.List;
 
-    public List<Ponto> buscarTodosPontos() {
-        return new ArrayList<>(super.findAll());
-    }
+public class PontoService extends Service<Ponto> {
 
     public PontoService() {
         super(Ponto.class);
     }
 
-    public Ponto validarDuplicidade(String endereco) throws EvitarDuplicidadeException {
-        if (!findByMap(Map.of("endereco", endereco)).isEmpty()) {
-            throw new EvitarDuplicidadeException("Já existe um ponto cadastrado com este endereço.");
-        }
-        return null;
+    public void salvarComValidacao(Ponto ponto) throws CampoObrigatorioException, EvitarDuplicidadeException {
+        validar(ponto);
+        create(ponto);
     }
 
+    private void validar(Ponto ponto) throws CampoObrigatorioException, EvitarDuplicidadeException {
+        String endereco = ponto.getEndereco();
+
+        if (endereco == null || endereco.trim().isEmpty()) {
+            throw new CampoObrigatorioException("O campo endereço é obrigatório.");
+        }
+
+        if (endereco.trim().length() < 5) {
+            throw new CampoObrigatorioException("O endereço deve ter pelo menos 5 caracteres.");
+        }
+
+        List<Ponto> pontosExistentes = findAll();
+        boolean duplicado = pontosExistentes.stream()
+            .anyMatch(p -> p.getEndereco().equalsIgnoreCase(endereco.trim()));
+
+        if (duplicado) {
+            throw new EvitarDuplicidadeException("Já existe um ponto com esse endereço cadastrado.");
+        }
+    }
 }

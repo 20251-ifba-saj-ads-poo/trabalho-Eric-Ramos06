@@ -54,6 +54,7 @@ public class Itinerario extends AbstractEntity {
     public String getHoraPartida() {
         return horaPartida;
     }
+    
 
     @Override
     public String toString() {

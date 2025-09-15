@@ -1,4 +1,4 @@
-package br.edu.ifba.saj.fwads.controller;
+/**package br.edu.ifba.saj.fwads.controller;
 
 import br.edu.ifba.saj.fwads.model.Itinerario;
 import br.edu.ifba.saj.fwads.model.Linha;
@@ -82,3 +82,4 @@ public class ShowLinhasVisuController {
         });
     }
 }
+*/

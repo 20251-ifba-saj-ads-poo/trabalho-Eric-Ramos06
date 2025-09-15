@@ -61,6 +61,18 @@ public class MasterController {
     private Button btnExibirLinhas;
     @FXML
     private Button btnCadPonto;
+    @FXML
+    private Button btnListMotorista;
+    @FXML
+    private Button btnListOnibus;
+    @FXML
+    private Button btnListRota;
+    @FXML
+    private Button btnListItinerario;
+    @FXML
+    private Button btnListLinha;
+    @FXML
+    private Button btnListPonto;
 
     private Object usuarioLogado;
 
@@ -143,6 +155,43 @@ public class MasterController {
         limparBotoes(event.getSource());
         showFXMLFile("ListLivro.fxml");
     }
+
+    @FXML
+    void showListPonto(ActionEvent event) {
+        limparBotoes(event.getSource());
+        showFXMLFile("ListPonto.fxml");
+    }
+
+    @FXML
+    void showListRota(ActionEvent event) {
+        limparBotoes(event.getSource());
+        showFXMLFile("ListRota.fxml");
+    }
+
+    @FXML
+    void showListItinerario(ActionEvent event) {
+        limparBotoes(event.getSource());
+        showFXMLFile("ListItinerario.fxml");
+    }
+
+    @FXML
+    void showListLinha(ActionEvent event) {
+        limparBotoes(event.getSource());
+        showFXMLFile("ListLinha.fxml");
+    }
+
+    @FXML
+    void showListMotorista(ActionEvent event) {
+        limparBotoes(event.getSource());
+        showFXMLFile("ListMotorista.fxml");
+    }
+
+    @FXML
+    void showListOnibus(ActionEvent event) {
+        limparBotoes(event.getSource());
+        showFXMLFile("ListOnibus.fxml");
+    }
+
 
     @FXML
     void showCadLivro(ActionEvent event) {

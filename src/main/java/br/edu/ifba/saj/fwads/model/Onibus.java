@@ -27,6 +27,8 @@ public class Onibus extends AbstractEntity {
         this.placa = placa;
     }
 
+    
+
     @Override
     public String toString() {
         return "Onibus [placa=" + placa + "]";

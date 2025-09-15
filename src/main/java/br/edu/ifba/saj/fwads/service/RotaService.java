@@ -1,48 +1,55 @@
 package br.edu.ifba.saj.fwads.service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
+import br.edu.ifba.saj.fwads.exception.CampoObrigatorioException;
 import br.edu.ifba.saj.fwads.exception.EvitarDuplicidadeException;
-import br.edu.ifba.saj.fwads.model.Ponto;
 import br.edu.ifba.saj.fwads.model.Rota;
-import jakarta.validation.ValidationException;
+
+import java.util.List;
 
 public class RotaService extends Service<Rota> {
-
-    public List<Rota> buscarTodosRotas() {
-        return new ArrayList<>(super.findAll());
-    }
-
-    public Rota validarDuplicidade(String nome) throws EvitarDuplicidadeException {
-        if (!findByMap(Map.of("nome", nome)).isEmpty()) {
-            throw new EvitarDuplicidadeException("Já existe uma rota cadastrada com este nome.");
-        }
-        return null;
-    }
 
     public RotaService() {
         super(Rota.class);
     }
 
-    public Rota create(String nome, Ponto pontoInicial, Ponto pontoFinal) throws ValidationException {
-        List<String> errors = new ArrayList<>();
+    public void salvarComValidacao(Rota rota)
+        throws CampoObrigatorioException, EvitarDuplicidadeException {
 
-        if (nome == null || nome.trim().isEmpty()) {
-            errors.add("Informe um nome para a rota.");
-        }
-
-        if (pontoInicial == null) {
-            errors.add("Selecione um ponto inicial.");
-        }
-
-        if (pontoFinal == null) {
-            errors.add("Selecione um ponto final.");
-        }
-
-        Rota novaRota = new Rota(nome, pontoInicial, pontoFinal, new ArrayList<>());
-        return create(novaRota);
+        validar(rota);
+        create(rota);
     }
 
+    private void validar(Rota rota)
+        throws CampoObrigatorioException, EvitarDuplicidadeException {
+
+        String nome = rota.getNome();
+
+        // ✅ Nome obrigatório
+        if (nome == null || nome.trim().isEmpty()) {
+            throw new CampoObrigatorioException("O nome da rota é obrigatório.");
+        }
+
+        // ✅ Tamanho mínimo
+        if (nome.trim().length() < 3) {
+            throw new CampoObrigatorioException("O nome da rota deve ter pelo menos 3 caracteres.");
+        }
+
+        // ✅ Ponto inicial e final obrigatórios
+        if (rota.getPontoInicial() == null) {
+            throw new CampoObrigatorioException("O ponto inicial da rota é obrigatório.");
+        }
+
+        if (rota.getPontoFinal() == null) {
+            throw new CampoObrigatorioException("O ponto final da rota é obrigatório.");
+        }
+
+        // ✅ Evitar duplicidade de nome
+        List<Rota> rotas = findAll();
+        boolean duplicado = rotas.stream()
+            .anyMatch(r -> r.getNome().equalsIgnoreCase(nome.trim()));
+
+        if (duplicado) {
+            throw new EvitarDuplicidadeException("Já existe uma rota com esse nome cadastrada.");
+        }
+    }
 }
