@@ -52,7 +52,7 @@ public class CadRotaController {
         @Override
         public Ponto fromString(String text) {
             PontoService pontoService = new PontoService();
-            return pontoService.bucasTodos().stream()
+            return pontoService.buscarTodosPontos().stream()
                 .filter(pt -> pt.getEndereco().equals(text))
                 .findFirst()
                 .orElse(null);
@@ -64,7 +64,7 @@ public class CadRotaController {
     PontoService pontoService = new PontoService();
 
     ObservableList<Ponto> obsPontos = 
-        pontoService.bucasTodos().stream()
+        pontoService.buscarTodosPontos().stream()
             .collect(Collectors.toCollection(FXCollections::observableArrayList));
     slPontoInitial.setItems(obsPontos);
     slPontoFinal.setItems(obsPontos);

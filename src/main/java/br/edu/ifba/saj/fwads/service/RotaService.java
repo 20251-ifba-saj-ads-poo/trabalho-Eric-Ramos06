@@ -1,22 +1,24 @@
 package br.edu.ifba.saj.fwads.service;
 
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import br.edu.ifba.saj.fwads.exception.EvitarDuplicidadeException;
-import br.edu.ifba.saj.fwads.exception.IncorretFormatException;
 import br.edu.ifba.saj.fwads.model.Ponto;
 import br.edu.ifba.saj.fwads.model.Rota;
 import jakarta.validation.ValidationException;
 
 public class RotaService extends Service<Rota>{
 
-    public Ponto validarDuplicidade(String endereco) throws EvitarDuplicidadeException {
-       if(!findByMap(Map.of("endereco", endereco)).isEmpty()){
-            throw new EvitarDuplicidadeException("Já existe um ponto cadastrado com este endereço.");
+    public List<Rota> buscarTodosRotas() {
+    return new ArrayList<>(super.findAll());
+}
+
+    public Rota validarDuplicidade(String nome) throws EvitarDuplicidadeException {
+       if(!findByMap(Map.of("nome", nome)).isEmpty()){
+            throw new EvitarDuplicidadeException("Já existe uma rota cadastrada com este nome.");
         }
         return null;
     }
@@ -56,6 +58,7 @@ public class RotaService extends Service<Rota>{
         Rota novaRota = new Rota(nome, pontoInicial, pontoFinal);
         return create(novaRota);
     }
+    
 
 
 }

@@ -9,6 +9,10 @@ import br.edu.ifba.saj.fwads.model.Ponto;
 
 public class PontoService extends Service<Ponto> {
 
+    public List<Ponto> buscarTodosPontos() {
+    return new ArrayList<>(super.findAll());
+}
+
     public PontoService() {
         super(Ponto.class);
     }
@@ -20,7 +24,5 @@ public class PontoService extends Service<Ponto> {
         return null;
     }
 
-    public List<Ponto> bucasTodos() {
-    return new ArrayList<>(super.findAll());
-}
+
 }
