@@ -21,7 +21,7 @@
                   <Image url="@assets/LogoH.png" />
                </image>
             </ImageView>
-            <Label fx:id="userEmail" layoutX="758.0" layoutY="32.0" onMouseClicked="#logOff" text="email@email" textFill="#FFFFFF" AnchorPane.rightAnchor="15.0">
+            <Label fx:id="userEmail" layoutX="758.0" layoutY="32.0" onMouseClicked="#logOff" textFill="#FFFFFF" AnchorPane.rightAnchor="15.0">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
