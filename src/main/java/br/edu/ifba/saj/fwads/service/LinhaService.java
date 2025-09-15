@@ -10,15 +10,15 @@ import br.edu.ifba.saj.fwads.model.Linha;
 public class LinhaService extends Service<Linha> {
 
     public List<Linha> buscarTodosLinhas() {
-    return new ArrayList<>(super.findAll());
-}
+        return new ArrayList<>(super.findAll());
+    }
 
     public LinhaService() {
         super(Linha.class);
     }
 
     public Linha validarDuplicidade(String nome) throws EvitarDuplicidadeException {
-       if(!findByMap(Map.of("nome", nome)).isEmpty()){
+        if (!findByMap(Map.of("nome", nome)).isEmpty()) {
             throw new EvitarDuplicidadeException("Já existe uma linha cadastrada com este nome.");
         }
         return null;

@@ -2,6 +2,7 @@ package br.edu.ifba.saj.fwads.controller;
 
 import br.edu.ifba.saj.fwads.App;
 import br.edu.ifba.saj.fwads.model.Usuario;
+import br.edu.ifba.saj.fwads.model.Visitante;
 import javafx.css.PseudoClass;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -46,11 +47,53 @@ public class MasterController {
     @FXML
     private Circle userPicture;
 
-    private Usuario usuarioLogado;
+    @FXML
+    private Button btnCadMotorista;
+    @FXML
+    private Button btnCadOnibus;
+    @FXML
+    private Button btnCadRota;
+    @FXML
+    private Button btnCadItinerario;
+    @FXML
+    private Button btnCadLinha;
+    @FXML
+    private Button btnExibirLinhas;
+    @FXML
+    private Button btnCadPonto;
 
-    public void setUsuarioLogado(Usuario usuarioLogado) {
-        this.usuarioLogado = usuarioLogado;
-        setEmail(usuarioLogado.getEmail());
+    private Object usuarioLogado;
+
+    public void setUsuarioLogado(Object usuario) {
+        this.usuarioLogado = usuario;
+
+        if (usuario instanceof Visitante) {
+            configurarInterfaceParaVisitante();
+        } else {
+            configurarInterfaceParaUsuario();
+        }
+    }
+
+    private void configurarInterfaceParaVisitante() {
+        btnCadMotorista.setVisible(false);
+        btnCadOnibus.setVisible(false);
+        btnCadRota.setVisible(false);
+        btnCadItinerario.setVisible(false);
+        btnCadLinha.setVisible(false);
+        btnCadPonto.setVisible(false);
+
+        btnExibirLinhas.setVisible(true);
+    }
+
+    private void configurarInterfaceParaUsuario() {
+        btnCadMotorista.setVisible(true);
+        btnCadOnibus.setVisible(true);
+        btnCadRota.setVisible(true);
+        btnCadItinerario.setVisible(true);
+        btnCadLinha.setVisible(true);
+        btnCadPonto.setVisible(true);
+
+        btnExibirLinhas.setVisible(true);
     }
 
     @FXML
@@ -90,13 +133,6 @@ public class MasterController {
     }
 
     @FXML
-    void showCadAutor(ActionEvent event) {
-        limparBotoes(event.getSource());
-        CadAutorController controller = (CadAutorController) showFXMLFile("CadAutor.fxml");
-        controller.setMasterController(this);
-    }
-
-    @FXML
     void showListAutor(ActionEvent event) {
         limparBotoes(event.getSource());
         showFXMLFile("ListAutor.fxml");
@@ -113,6 +149,7 @@ public class MasterController {
         limparBotoes(event.getSource());
         showFXMLFile("CadLivro.fxml");
     }
+
     @FXML
     void showMotorista(ActionEvent event) {
         limparBotoes(event.getSource());
@@ -148,7 +185,7 @@ public class MasterController {
         limparBotoes(event.getSource());
         showFXMLFile("CadLinha.fxml");
     }
-    
+
     @FXML
     void showLinhasVisu(ActionEvent event) {
         limparBotoes(event.getSource());
@@ -169,7 +206,4 @@ public class MasterController {
         return null;
     }
 
-    private void setEmail(String email) {
-        userEmail.setText(email);
-    }
 }

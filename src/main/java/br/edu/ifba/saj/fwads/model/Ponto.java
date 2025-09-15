@@ -6,7 +6,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
 @Entity
-public class Ponto  extends AbstractEntity{
+public class Ponto extends AbstractEntity {
     @Column
     @NotBlank
     @Size(min = 5)

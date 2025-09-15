@@ -20,7 +20,7 @@ public class CadPontoController {
     @FXML
     private Button btnSalvar;
 
-private PontoService servicePonto = new PontoService();
+    private PontoService servicePonto = new PontoService();
 
     @FXML
     void salvarPonto(ActionEvent event) {
@@ -33,9 +33,6 @@ private PontoService servicePonto = new PontoService();
             new Alert(AlertType.INFORMATION,
                     "Ponto cadastrado com sucesso: " + novoPonto.getEndereco()).showAndWait();
             limparTela();
-            // if (listMotoristaController != null) {
-            // listMotoristaController.loadMotoristaList();
-            // }
         } catch (EvitarDuplicidadeException e) {
             new Alert(AlertType.ERROR, e.getMessage()).showAndWait();
         } catch (Exception e) {
@@ -44,17 +41,18 @@ private PontoService servicePonto = new PontoService();
                     .showAndWait();
         }
     }
-@FXML
+
+    @FXML
     private void initialize() {
         BooleanBinding enderecoInvalido = Bindings.createBooleanBinding(
-            () -> {
-                String texto = txEndereco.getText();
-                return texto == null || texto.trim().isEmpty();
-            },
-            txEndereco.textProperty()
-        );
+                () -> {
+                    String texto = txEndereco.getText();
+                    return texto == null || texto.trim().isEmpty();
+                },
+                txEndereco.textProperty());
         btnSalvar.disableProperty().bind(enderecoInvalido);
     }
+
     @FXML
     private void limparTela() {
         txEndereco.clear();

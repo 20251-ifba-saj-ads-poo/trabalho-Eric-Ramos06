@@ -49,7 +49,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="menuItemCadAutor1" alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#showLinhasVisu" prefHeight="35.0" styleClass="btn-menu" stylesheets="@assets/style.css" text="Mostrar Linhas" textFill="WHITE">
+            <Button fx:id="btnExibirLinhas" alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#showLinhasVisu" prefHeight="35.0" styleClass="btn-menu" stylesheets="@assets/style.css" text="Mostrar Linhas" textFill="WHITE">
                <padding>
                   <Insets bottom="5.0" left="10.0" />
                </padding>
@@ -64,7 +64,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="menuItemCadAutor11" alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#showMotorista" prefHeight="35.0" styleClass="btn-menu" stylesheets="@assets/style.css" text="Cadastrar Motorista" textFill="WHITE">
+            <Button fx:id="btnCadMotorista" alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#showMotorista" prefHeight="35.0" styleClass="btn-menu" stylesheets="@assets/style.css" text="Cadastrar Motorista" textFill="WHITE">
                <padding>
                   <Insets bottom="5.0" left="10.0" />
                </padding>
@@ -79,7 +79,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="menuItemCadLivro1" alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#showOnibus" prefHeight="35.0" styleClass="btn-menu" stylesheets="@assets/style.css" text="Cadastrar Ônibus" textFill="WHITE">
+            <Button fx:id="btnCadOnibus" alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#showOnibus" prefHeight="35.0" styleClass="btn-menu" stylesheets="@assets/style.css" text="Cadastrar Ônibus" textFill="WHITE">
                <padding>
                   <Insets bottom="5.0" left="10.0" />
                </padding>
@@ -94,7 +94,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="menuItemCadLivro11" alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#showPonto" prefHeight="35.0" styleClass="btn-menu" stylesheets="@assets/style.css" text="Cadastrar Ponto" textFill="WHITE">
+            <Button fx:id="btnCadPonto" alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#showPonto" prefHeight="35.0" styleClass="btn-menu" stylesheets="@assets/style.css" text="Cadastrar Ponto" textFill="WHITE">
                <padding>
                   <Insets bottom="5.0" left="10.0" />
                </padding>
@@ -109,7 +109,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="menuItemCadLivro12" alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#showRota" prefHeight="35.0" styleClass="btn-menu" stylesheets="@assets/style.css" text="Cadastrar Rota" textFill="WHITE">
+            <Button fx:id="btnCadRota" alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#showRota" prefHeight="35.0" styleClass="btn-menu" stylesheets="@assets/style.css" text="Cadastrar Rota" textFill="WHITE">
                <padding>
                   <Insets bottom="5.0" left="10.0" />
                </padding>
@@ -124,7 +124,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="menuItemCadLivro121" alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#showItinerario" prefHeight="35.0" styleClass="btn-menu" stylesheets="@assets/style.css" text="Cadastrar Itinerário" textFill="WHITE">
+            <Button fx:id="btnCadItinerario" alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#showItinerario" prefHeight="35.0" styleClass="btn-menu" stylesheets="@assets/style.css" text="Cadastrar Itinerário" textFill="WHITE">
                <padding>
                   <Insets bottom="5.0" left="10.0" />
                </padding>
@@ -139,7 +139,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="menuItemCadLivro122" alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#showLinha" prefHeight="35.0" styleClass="btn-menu" stylesheets="@assets/style.css" text="Cadastrar Linha" textFill="WHITE">
+            <Button fx:id="btnCadLinha" alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#showLinha" prefHeight="35.0" styleClass="btn-menu" stylesheets="@assets/style.css" text="Cadastrar Linha" textFill="WHITE">
                <padding>
                   <Insets bottom="5.0" left="10.0" />
                </padding>

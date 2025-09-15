@@ -10,15 +10,15 @@ import br.edu.ifba.saj.fwads.model.Motorista;
 public class MotoristaService extends Service<Motorista> {
 
     public List<Motorista> buscarTodosMotoristas() {
-    return new ArrayList<>(super.findAll());
-}
+        return new ArrayList<>(super.findAll());
+    }
 
     public MotoristaService() {
         super(Motorista.class);
     }
 
     public Motorista validarDuplicidade(String cpf) throws EvitarDuplicidadeException {
-       if(!findByMap(Map.of("cpf", cpf)).isEmpty()){
+        if (!findByMap(Map.of("cpf", cpf)).isEmpty()) {
             throw new EvitarDuplicidadeException("Já existe uma conta vinculada à este CPF.");
         }
         return null;

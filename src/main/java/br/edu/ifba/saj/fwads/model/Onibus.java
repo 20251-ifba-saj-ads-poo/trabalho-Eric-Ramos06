@@ -6,7 +6,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
 @Entity
-public class Onibus  extends AbstractEntity{
+public class Onibus extends AbstractEntity {
     @Column
     @NotBlank
     @Size(min = 5)

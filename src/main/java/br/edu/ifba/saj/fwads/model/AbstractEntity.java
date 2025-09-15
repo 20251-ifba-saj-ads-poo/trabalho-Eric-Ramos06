@@ -36,7 +36,6 @@ public abstract class AbstractEntity {
         return super.equals(other);
     }
 
-    
     public UUID getId() {
         return id;
     }
@@ -45,5 +44,4 @@ public abstract class AbstractEntity {
         this.id = id;
     }
 
-    
 }

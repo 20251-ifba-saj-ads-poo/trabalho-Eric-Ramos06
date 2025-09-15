@@ -17,7 +17,7 @@ public class UsuarioService extends Service<Usuario> {
             return findByMap(Map.of("login", login, "senha", senha)).getFirst();
         } catch (NoSuchElementException e) {
             throw new LoginInvalidoException(
-                "Não foi possível localizar o usuário " + login + ", ou a senha esta errada");
+                    "Não foi possível localizar o usuário " + login + ", ou a senha esta errada");
         }
     }
 }

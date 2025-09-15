@@ -33,9 +33,6 @@ public class CadOnibusController {
             new Alert(AlertType.INFORMATION,
                     "Ônibus cadastrado com sucesso: " + novoOnibus.getPlaca()).showAndWait();
             limparTela();
-            // if (listMotoristaController != null) {
-            // listMotoristaController.loadMotoristaList();
-            // }
         } catch (EvitarDuplicidadeException e) {
             new Alert(AlertType.ERROR, e.getMessage()).showAndWait();
         } catch (Exception e) {
@@ -44,18 +41,19 @@ public class CadOnibusController {
                     .showAndWait();
         }
     }
+
     @FXML
     private void initialize() {
         BooleanBinding placaInvalida = Bindings.createBooleanBinding(
-            () -> {
-                String text = txPlaca.getText();
-                return text == null || text.trim().isEmpty();
-            },
-            txPlaca.textProperty()
-        );
+                () -> {
+                    String text = txPlaca.getText();
+                    return text == null || text.trim().isEmpty();
+                },
+                txPlaca.textProperty());
 
         btnSalvar.disableProperty().bind(placaInvalida);
     }
+
     @FXML
     private void limparTela() {
         txPlaca.clear();

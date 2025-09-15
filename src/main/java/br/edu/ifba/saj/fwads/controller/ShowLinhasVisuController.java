@@ -43,33 +43,36 @@ public class ShowLinhasVisuController {
 
                     Rota rota = iti != null ? iti.getRota() : null;
                     String nomeRota = rota != null ? rota.getNome() : "N/A";
-                    String pontoInicial = rota != null && rota.getPontoInicial() != null ? rota.getPontoInicial().getEndereco() : "N/A";
-                    String pontoFinal = rota != null && rota.getPontoFinal() != null ? rota.getPontoFinal().getEndereco() : "N/A";
+                    String pontoInicial = rota != null && rota.getPontoInicial() != null
+                            ? rota.getPontoInicial().getEndereco()
+                            : "N/A";
+                    String pontoFinal = rota != null && rota.getPontoFinal() != null
+                            ? rota.getPontoFinal().getEndereco()
+                            : "N/A";
 
                     String paradas = rota != null && rota.getParadas() != null
-                        ? rota.getParadas().stream()
-                            .map(Ponto::getEndereco)
-                            .collect(Collectors.joining(", "))
-                        : "Nenhuma parada cadastrada";
+                            ? rota.getParadas().stream()
+                                    .map(Ponto::getEndereco)
+                                    .collect(Collectors.joining(", "))
+                            : "Nenhuma parada cadastrada";
 
                     String info = String.format(
-                        "Linha: %s%n" +
-                        "Motorista: %s (CPF: %s)%n" +
-                        "Ônibus: %s%n" +
-                        "Itinerário: %s às %s%n" +
-                        "Rota: %s (%s → %s)%n" +
-                        "Paradas: %s",
-                        nomeLinha,
-                        nomeMotorista,
-                        cpfMotorista,
-                        placaOnibus,
-                        nomeItinerario,
-                        horaPartida,
-                        nomeRota,
-                        pontoInicial,
-                        pontoFinal,
-                        paradas
-                    );
+                            "Linha: %s%n" +
+                                    "Motorista: %s (CPF: %s)%n" +
+                                    "Ônibus: %s%n" +
+                                    "Itinerário: %s às %s%n" +
+                                    "Rota: %s (%s → %s)%n" +
+                                    "Paradas: %s",
+                            nomeLinha,
+                            nomeMotorista,
+                            cpfMotorista,
+                            placaOnibus,
+                            nomeItinerario,
+                            horaPartida,
+                            nomeRota,
+                            pontoInicial,
+                            pontoFinal,
+                            paradas);
 
                     setText(info);
                     setWrapText(true);
