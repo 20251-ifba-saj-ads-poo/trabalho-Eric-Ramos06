@@ -4,6 +4,7 @@ module br.edu.ifba.saj.fwads {
     requires org.hibernate.orm.core;
     requires jakarta.persistence;
     requires jakarta.validation;
+    requires javafx.base;
 
 
     opens br.edu.ifba.saj.fwads.controller to javafx.fxml, org.hibernate.orm.core;    

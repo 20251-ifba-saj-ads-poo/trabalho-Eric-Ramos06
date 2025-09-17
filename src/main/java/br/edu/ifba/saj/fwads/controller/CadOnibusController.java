@@ -5,6 +5,7 @@ import br.edu.ifba.saj.fwads.exception.FormatoInvalidoException;
 import br.edu.ifba.saj.fwads.exception.EvitarDuplicidadeException;
 import br.edu.ifba.saj.fwads.model.Onibus;
 import br.edu.ifba.saj.fwads.service.OnibusService;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
@@ -17,22 +18,14 @@ public class CadOnibusController {
 
     private MasterController masterController;
     private ListOnibusController listOnibusController;
-    private OnibusService serviceOnibus;
-
-    public void setMasterController(MasterController masterController) {
-        this.masterController = masterController;
-    }
+    private OnibusService serviceOnibus = new OnibusService();
 
     public void setListOnibusController(ListOnibusController listOnibusController) {
         this.listOnibusController = listOnibusController;
     }
 
-    public void setServiceOnibus(OnibusService serviceOnibus) {
-        this.serviceOnibus = serviceOnibus;
-    }
-
     @FXML
-    private void salvarOnibus() {
+    private void salvarOnibus(ActionEvent event) {
         String placa = txPlaca.getText().trim();
         Onibus novoOnibus = new Onibus(placa);
 

@@ -17,7 +17,7 @@
       <TextField fx:id="txNome" layoutX="15.0" layoutY="31.0" />
       <Label layoutX="15.0" layoutY="14.0" text="Nome" />
       <ChoiceBox fx:id="slPontoFinal" layoutX="15.0" layoutY="130.0" prefWidth="150.0" />
-      <ChoiceBox fx:id="slPontoInitial" layoutX="15.0" layoutY="82.0" prefWidth="150.0" />
-      <ListView fx:id="lvParadas" layoutX="15.0" layoutY="183.0" prefHeight="200.0" prefWidth="200.0" />
+      <ChoiceBox fx:id="slPontoInicial" layoutX="15.0" layoutY="82.0" prefWidth="150.0" />
+      <ListView fx:id="lvparadas" layoutX="15.0" layoutY="183.0" prefHeight="200.0" prefWidth="200.0" />
    </children>
 </AnchorPane>

@@ -27,15 +27,11 @@ public class CadRotaController {
     private ListView<Ponto> lvparadas;
 
     private ListRotaController listRotaController;
-    private RotaService serviceRota;
+    private RotaService serviceRota = new RotaService();
     private PontoService servicePonto = new PontoService();
 
     public void setListRotaController(ListRotaController listRotaController) {
         this.listRotaController = listRotaController;
-    }
-
-    public void setServiceRota(RotaService serviceRota) {
-        this.serviceRota = serviceRota;
     }
 
     @FXML

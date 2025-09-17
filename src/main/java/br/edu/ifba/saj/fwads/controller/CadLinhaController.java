@@ -34,7 +34,7 @@ public class CadLinhaController {
     private ChoiceBox<Itinerario> slItinerario;
 
     private ListLinhaController listLinhaController;
-    private LinhaService serviceLinha;
+    private LinhaService serviceLinha = new LinhaService();
     private MotoristaService serviceMotorista = new MotoristaService();
     private OnibusService serviceOnibus = new OnibusService();
     private ItinerarioService serviceItinerario = new ItinerarioService();
@@ -43,13 +43,8 @@ public class CadLinhaController {
         this.listLinhaController = listLinhaController;
     }
 
-    public void setServiceLinha(LinhaService serviceLinha) {
-        this.serviceLinha = serviceLinha;
-    }
-
     @FXML
     private void initialize() {
-        // Converters
         slMotorista.setConverter(new StringConverter<>() {
             @Override
             public String toString(Motorista obj) {
@@ -86,7 +81,6 @@ public class CadLinhaController {
             }
         });
 
-        // Carregar dados
         slMotorista.setItems(FXCollections.observableList(serviceMotorista.findAll()));
         slOnibus.setItems(FXCollections.observableList(serviceOnibus.findAll()));
         slItinerario.setItems(FXCollections.observableList(serviceItinerario.findAll()));

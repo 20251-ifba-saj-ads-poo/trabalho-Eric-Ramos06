@@ -30,16 +30,4 @@ public class ListPontoController {
         tblPonto.setItems(FXCollections.observableList(new Service(Ponto.class).findAll()));
     }
 
-    @FXML
-    public void showNovoPonto() {
-
-        Stage stage = new Stage();
-        Scene scene = new Scene(App.loadFXML("controller/CadPonto.fxml"), 1000, 800);
-        stage.setScene(scene);
-        stage.initModality(Modality.APPLICATION_MODAL);
-        CadPontoController controller = (CadPontoController) App.getController();
-        controller.setListPontoController(this);
-        stage.showAndWait();
-    }
-
 }

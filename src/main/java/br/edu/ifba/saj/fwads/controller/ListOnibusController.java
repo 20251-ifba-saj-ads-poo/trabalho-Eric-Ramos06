@@ -30,16 +30,4 @@ public class ListOnibusController {
         tblOnibus.setItems(FXCollections.observableList(new Service(Onibus.class).findAll()));
     }
 
-    @FXML
-    public void showNovoOnibus() {
-
-        Stage stage = new Stage();
-        Scene scene = new Scene(App.loadFXML("controller/CadOnibus.fxml"), 1000, 800);
-        stage.setScene(scene);
-        stage.initModality(Modality.APPLICATION_MODAL);
-        CadOnibusController controller = (CadOnibusController) App.getController();
-        controller.setListOnibusController(this);
-        stage.showAndWait();
-    }
-
 }

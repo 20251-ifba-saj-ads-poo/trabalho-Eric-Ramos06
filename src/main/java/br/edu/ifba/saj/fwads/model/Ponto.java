@@ -37,7 +37,7 @@ public class Ponto extends AbstractEntity {
 
     @Override
     public String toString() {
-        return "Ponto [endereco=" + endereco + "]";
+        return endereco;
     }
 
     public List<Rota> getRotas() {

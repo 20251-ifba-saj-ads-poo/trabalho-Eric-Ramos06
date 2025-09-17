@@ -93,8 +93,14 @@ public class MasterController {
         btnCadItinerario.setVisible(false);
         btnCadLinha.setVisible(false);
         btnCadPonto.setVisible(false);
+        btnListMotorista.setVisible(false);
+        btnListOnibus.setVisible(false);
 
         btnExibirLinhas.setVisible(true);
+        btnListRota.setVisible(true);
+        btnListItinerario.setVisible(true);
+        btnListLinha.setVisible(true);
+        btnListPonto.setVisible(true);
     }
 
     private void configurarInterfaceParaUsuario() {
@@ -104,6 +110,12 @@ public class MasterController {
         btnCadItinerario.setVisible(true);
         btnCadLinha.setVisible(true);
         btnCadPonto.setVisible(true);
+        btnListMotorista.setVisible(true);
+        btnListOnibus.setVisible(true);
+        btnListRota.setVisible(true);
+        btnListItinerario.setVisible(true);
+        btnListLinha.setVisible(true);
+        btnListPonto.setVisible(true);
 
         btnExibirLinhas.setVisible(true);
     }
@@ -191,7 +203,6 @@ public class MasterController {
         limparBotoes(event.getSource());
         showFXMLFile("ListOnibus.fxml");
     }
-
 
     @FXML
     void showCadLivro(ActionEvent event) {

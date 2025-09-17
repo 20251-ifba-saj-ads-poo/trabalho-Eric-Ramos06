@@ -26,33 +26,27 @@ public class ItinerarioService extends Service<Itinerario> {
         String nome = itinerario.getNome();
         String hora = itinerario.getHoraPartida();
 
-        // ✅ Nome obrigatório
         if (nome == null || nome.trim().isEmpty()) {
             throw new CampoObrigatorioException("O nome do itinerário é obrigatório.");
         }
 
-        // ✅ Tamanho mínimo do nome
         if (nome.trim().length() < 3) {
             throw new CampoObrigatorioException("O nome do itinerário deve ter pelo menos 3 caracteres.");
         }
 
-        // ✅ Hora obrigatória
         if (hora == null || hora.trim().isEmpty()) {
             throw new CampoObrigatorioException("A hora de partida é obrigatória.");
         }
 
-        // ✅ Formato da hora (HH:mm)
         String padraoHora = "^([01]\\d|2[0-3]):([0-5]\\d)$";
         if (!hora.matches(padraoHora)) {
             throw new FormatoInvalidoException("A hora de partida deve estar no formato HH:mm (ex: 08:30 ou 23:45).");
         }
 
-        // ✅ Rota obrigatória
         if (itinerario.getRota() == null) {
             throw new CampoObrigatorioException("A rota do itinerário é obrigatória.");
         }
 
-        // ✅ Evitar duplicidade de nome
         List<Itinerario> itinerarios = findAll();
         boolean duplicado = itinerarios.stream()
             .anyMatch(i -> i.getNome().equalsIgnoreCase(nome.trim()));

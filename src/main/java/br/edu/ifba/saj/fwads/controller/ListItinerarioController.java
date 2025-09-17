@@ -40,18 +40,4 @@ public class ListItinerarioController {
         tblItinerario.setItems(FXCollections.observableList(new Service(Itinerario.class).findAll()));
     }
 
-    @FXML
-    void showNovoItinerario(ActionEvent event) {
-
-        Stage stage = new Stage();
-        Scene scene = new Scene(App.loadFXML("controller/CadItinerario.fxml"), 800, 600);
-        stage.setScene(scene);
-        stage.initModality(Modality.APPLICATION_MODAL);
-        CadItinerarioController controller = (CadItinerarioController) App.getController();
-        controller.setListItinerarioController(this);
-
-        stage.showAndWait();
-
-    }
-
 }

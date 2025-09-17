@@ -47,18 +47,4 @@ public class ListLinhaController {
         tblLinha.setItems(FXCollections.observableList(new Service(Linha.class).findAll()));
     }
 
-    @FXML
-    void showNovoLinha(ActionEvent event) {
-
-        Stage stage = new Stage();
-        Scene scene = new Scene(App.loadFXML("controller/CadLinha.fxml"), 800, 600);
-        stage.setScene(scene);
-        stage.initModality(Modality.APPLICATION_MODAL);
-        CadLinhaController controller = (CadLinhaController) App.getController();
-        controller.setListLinhaController(this);
-
-        stage.showAndWait();
-
-    }
-
 }

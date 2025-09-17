@@ -20,30 +20,18 @@ public class ListMotoristaController {
     private TableColumn<Motorista, String> columnNome;
 
     @FXML
-    private TableColumn<Motorista, String> columnCPF;
+    private TableColumn<Motorista, String> columncpf;
 
 
     @FXML
     public void initialize() {
         columnNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
-        columnCPF.setCellValueFactory(new PropertyValueFactory<>("CPF"));
+        columncpf.setCellValueFactory(new PropertyValueFactory<>("cpf"));
         loadMotoristaList();
     }
 
     public void loadMotoristaList() {
         tblMotorista.setItems(FXCollections.observableList(new Service(Motorista.class).findAll()));
-    }
-
-    @FXML
-    public void showNovoMotorista() {
-
-        Stage stage = new Stage();
-        Scene scene = new Scene(App.loadFXML("controller/CadMotorista.fxml"), 1000, 800);
-        stage.setScene(scene);
-        stage.initModality(Modality.APPLICATION_MODAL);
-        CadMotoristaController controller = (CadMotoristaController) App.getController();
-        controller.setListMotoristaController(this);
-        stage.showAndWait();
     }
 
 }

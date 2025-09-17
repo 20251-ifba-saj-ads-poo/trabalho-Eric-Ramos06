@@ -56,13 +56,6 @@
                <font>
                   <Font size="25.0" />
                </font>
-               <graphic>
-                  <ImageView fitHeight="150.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@assets/reading-book.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
             </Button>
             <Button fx:id="btnListLinha" alignment="TOP_LEFT" layoutX="10.0" layoutY="174.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#showListLinha" prefHeight="35.0" styleClass="btn-menu" stylesheets="@assets/style.css" text="Lista Linhas" textFill="WHITE">
                <padding>
@@ -71,13 +64,6 @@
                <font>
                   <Font size="25.0" />
                </font>
-               <graphic>
-                  <ImageView fitHeight="150.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@assets/reading-book.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
             </Button>
             <Button fx:id="btnListItinerario" alignment="TOP_LEFT" layoutX="10.0" layoutY="297.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#showListItinerario" prefHeight="35.0" styleClass="btn-menu" stylesheets="@assets/style.css" text="Lista Itinerarios" textFill="WHITE">
                <padding>
@@ -86,13 +72,6 @@
                <font>
                   <Font size="25.0" />
                </font>
-               <graphic>
-                  <ImageView fitHeight="35.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@assets/study.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
             </Button>
             <Button fx:id="btnListRota" alignment="TOP_LEFT" layoutX="10.0" layoutY="256.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#showListRota" prefHeight="35.0" styleClass="btn-menu" stylesheets="@assets/style.css" text="Lista Rotas" textFill="WHITE">
                <padding>
@@ -101,13 +80,6 @@
                <font>
                   <Font size="25.0" />
                </font>
-               <graphic>
-                  <ImageView fitHeight="150.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@assets/reading-book.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
             </Button>
             <Button fx:id="btnListPonto" alignment="TOP_LEFT" layoutX="10.0" layoutY="338.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#showListPonto" prefHeight="35.0" styleClass="btn-menu" stylesheets="@assets/style.css" text="Lista Pontos" textFill="WHITE">
                <padding>
@@ -116,13 +88,6 @@
                <font>
                   <Font size="25.0" />
                </font>
-               <graphic>
-                  <ImageView fitHeight="150.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@assets/reading-book.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
             </Button>
             <Button fx:id="btnListMotorista" alignment="TOP_LEFT" layoutX="10.0" layoutY="92.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#showListMotorista" prefHeight="35.0" styleClass="btn-menu" stylesheets="@assets/style.css" text="Lista Motoristas" textFill="WHITE">
                <padding>
@@ -131,28 +96,14 @@
                <font>
                   <Font size="25.0" />
                </font>
-               <graphic>
-                  <ImageView fitHeight="150.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@assets/reading-book.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
             </Button>
-            <Button fx:id="btnListOnibus" alignment="TOP_LEFT" layoutX="10.0" layoutY="92.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#showListMotorista" prefHeight="35.0" styleClass="btn-menu" stylesheets="@assets/style.css" text="Lista Onibus" textFill="WHITE">
+            <Button fx:id="btnListOnibus" alignment="TOP_LEFT" layoutX="10.0" layoutY="92.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#showListOnibus" prefHeight="35.0" styleClass="btn-menu" stylesheets="@assets/style.css" text="Lista Onibus" textFill="WHITE">
                <padding>
                   <Insets bottom="5.0" left="10.0" />
                </padding>
                <font>
                   <Font size="25.0" />
                </font>
-               <graphic>
-                  <ImageView fitHeight="150.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@assets/reading-book.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
             </Button>
             <Button fx:id="btnCadMotorista" alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#showMotorista" prefHeight="35.0" styleClass="btn-menu" stylesheets="@assets/style.css" text="Cadastrar Motorista" textFill="WHITE">
                <padding>
@@ -161,13 +112,6 @@
                <font>
                   <Font size="25.0" />
                </font>
-               <graphic>
-                  <ImageView fitHeight="150.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@assets/reading-book.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
             </Button>
             <Button fx:id="btnCadOnibus" alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#showOnibus" prefHeight="35.0" styleClass="btn-menu" stylesheets="@assets/style.css" text="Cadastrar Ônibus" textFill="WHITE">
                <padding>
@@ -176,13 +120,6 @@
                <font>
                   <Font size="25.0" />
                </font>
-               <graphic>
-                  <ImageView fitHeight="35.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@assets/study.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
             </Button>
             <Button fx:id="btnCadPonto" alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#showPonto" prefHeight="35.0" styleClass="btn-menu" stylesheets="@assets/style.css" text="Cadastrar Ponto" textFill="WHITE">
                <padding>
@@ -191,13 +128,6 @@
                <font>
                   <Font size="25.0" />
                </font>
-               <graphic>
-                  <ImageView fitHeight="35.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@assets/study.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
             </Button>
             <Button fx:id="btnCadRota" alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#showRota" prefHeight="35.0" styleClass="btn-menu" stylesheets="@assets/style.css" text="Cadastrar Rota" textFill="WHITE">
                <padding>
@@ -206,13 +136,6 @@
                <font>
                   <Font size="25.0" />
                </font>
-               <graphic>
-                  <ImageView fitHeight="35.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@assets/study.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
             </Button>
             <Button fx:id="btnCadItinerario" alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#showItinerario" prefHeight="35.0" styleClass="btn-menu" stylesheets="@assets/style.css" text="Cadastrar Itinerário" textFill="WHITE">
                <padding>
@@ -221,13 +144,6 @@
                <font>
                   <Font size="25.0" />
                </font>
-               <graphic>
-                  <ImageView fitHeight="35.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@assets/study.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
             </Button>
             <Button fx:id="btnCadLinha" alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#showLinha" prefHeight="35.0" styleClass="btn-menu" stylesheets="@assets/style.css" text="Cadastrar Linha" textFill="WHITE">
                <padding>
@@ -236,13 +152,6 @@
                <font>
                   <Font size="25.0" />
                </font>
-               <graphic>
-                  <ImageView fitHeight="35.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@assets/study.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
             </Button>
          </children></VBox>
    </left>

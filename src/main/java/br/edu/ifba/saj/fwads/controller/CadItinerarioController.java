@@ -8,6 +8,7 @@ import br.edu.ifba.saj.fwads.model.Rota;
 import br.edu.ifba.saj.fwads.service.ItinerarioService;
 import br.edu.ifba.saj.fwads.service.RotaService;
 import javafx.collections.FXCollections;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
@@ -27,7 +28,7 @@ public class CadItinerarioController {
     private ChoiceBox<Rota> slRota;
 
     private ListItinerarioController listItinerarioController;
-    private ItinerarioService serviceItinerario;
+    private ItinerarioService serviceItinerario = new ItinerarioService();
     private RotaService serviceRota = new RotaService();
 
     public void setListItinerarioController(ListItinerarioController listItinerarioController) {
@@ -56,7 +57,7 @@ public class CadItinerarioController {
     }
 
     @FXML
-    private void salvarItinerario() {
+    private void salvarItinerario(ActionEvent event) {
         String nome = txNome.getText().trim();
         String hora = txHoraPartida.getText().trim();
         Rota rotaSelecionada = slRota.getSelectionModel().getSelectedItem();

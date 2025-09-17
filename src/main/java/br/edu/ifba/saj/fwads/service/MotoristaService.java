@@ -20,7 +20,7 @@ public class MotoristaService extends Service<Motorista> {
         create(motorista);
     }
 
-    private void validar(Motorista motorista)
+    public void validar(Motorista motorista)
         throws CampoObrigatorioException, FormatoInvalidoException, EvitarDuplicidadeException {
 
         String nome = motorista.getNome();

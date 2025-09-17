@@ -24,17 +24,14 @@ public class RotaService extends Service<Rota> {
 
         String nome = rota.getNome();
 
-        // ✅ Nome obrigatório
         if (nome == null || nome.trim().isEmpty()) {
             throw new CampoObrigatorioException("O nome da rota é obrigatório.");
         }
 
-        // ✅ Tamanho mínimo
         if (nome.trim().length() < 3) {
             throw new CampoObrigatorioException("O nome da rota deve ter pelo menos 3 caracteres.");
         }
 
-        // ✅ Ponto inicial e final obrigatórios
         if (rota.getPontoInicial() == null) {
             throw new CampoObrigatorioException("O ponto inicial da rota é obrigatório.");
         }
@@ -43,7 +40,6 @@ public class RotaService extends Service<Rota> {
             throw new CampoObrigatorioException("O ponto final da rota é obrigatório.");
         }
 
-        // ✅ Evitar duplicidade de nome
         List<Rota> rotas = findAll();
         boolean duplicado = rotas.stream()
             .anyMatch(r -> r.getNome().equalsIgnoreCase(nome.trim()));

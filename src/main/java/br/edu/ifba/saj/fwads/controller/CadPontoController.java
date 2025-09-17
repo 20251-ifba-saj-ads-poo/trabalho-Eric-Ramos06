@@ -4,33 +4,27 @@ import br.edu.ifba.saj.fwads.exception.CampoObrigatorioException;
 import br.edu.ifba.saj.fwads.exception.EvitarDuplicidadeException;
 import br.edu.ifba.saj.fwads.model.Ponto;
 import br.edu.ifba.saj.fwads.service.PontoService;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 
 public class CadPontoController {
+    
     @FXML
     private TextField txEndereço;
 
     private MasterController masterController;
     private ListPontoController listPontoController;
-    private PontoService servicePonto;
-
-    public void setServicePonto(PontoService servicePonto) {
-        this.servicePonto = servicePonto;
-    }
-
-    public void setMasterController(MasterController masterController) {
-        this.masterController = masterController;
-    }
+    private PontoService servicePonto = new PontoService();
 
     public void setListPontoController(ListPontoController listPontoController) {
         this.listPontoController = listPontoController;
     }
 
     @FXML
-    private void salvarPonto() {
+    private void salvarPonto(ActionEvent event) {
         String endereco = txEndereço.getText().trim();
         Ponto novoPonto = new Ponto(endereco);
 
